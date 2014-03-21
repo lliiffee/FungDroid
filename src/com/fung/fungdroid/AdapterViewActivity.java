@@ -34,7 +34,7 @@ public class AdapterViewActivity extends Activity {
 		gridView = (GridView) findViewById(R.id.gridview);
 		adapter = new GridViewAdapter();
 		gridView.setAdapter(adapter);
-	}
+	} 
 	
 	private class GridViewAdapter extends BaseAdapter {
 
