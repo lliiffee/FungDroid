@@ -382,3 +382,5 @@ public class HttpCache {
         }
     }
 }
+//http://www.trinea.cn/android/android-http-cache/
+//http://www.linuxidc.com/Linux/2011-09/43150.htm

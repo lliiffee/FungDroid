@@ -13,15 +13,15 @@ import com.fung.droid.http.HttpCache.HttpCacheListener;
 import com.fung.droid.http.HttpResponse;
 
 public class MainActivity extends Activity {
-
-	private HttpCache httpCache = new HttpCache(MainActivity.this);
+	HttpCache httpCache ;
+	
 	//private HttpCache httpCache = CacheManager.getHttpCache(MainActivity.this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
-		
+		  httpCache = new HttpCache(MainActivity.this);
 		Button button = (Button) findViewById(R.id.button);
 		button.setOnClickListener(new View.OnClickListener() {
 			
