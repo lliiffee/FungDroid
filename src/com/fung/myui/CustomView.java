@@ -17,7 +17,7 @@ import android.view.View.MeasureSpec;
 
 import com.fung.fungdroid.R;
 
- 
+ // 自定义 View...
 public class CustomView extends View {
 	private static final String TAG = "CustomView";
 

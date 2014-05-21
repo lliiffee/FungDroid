@@ -28,6 +28,8 @@
         
          <activity android:name=".AdapterViewActivity"></activity>
          
+          <activity android:name=".HandlerActivity"></activity>
+         
     </application>
  
 </manifest>

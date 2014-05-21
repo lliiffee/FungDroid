@@ -1,5 +1,8 @@
 package com.fung.fungdroid;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,10 +14,12 @@ import android.widget.Button;
 import com.fung.droid.http.HttpCache;
 import com.fung.droid.http.HttpCache.HttpCacheListener;
 import com.fung.droid.http.HttpResponse;
+import com.fung.droid.util.JSONUtils;
+import com.fung.droid.util.StringUtils;
 
 public class MainActivity extends Activity {
 	HttpCache httpCache ;
-	
+	 
 	//private HttpCache httpCache = CacheManager.getHttpCache(MainActivity.this);
 	
 	@Override
@@ -28,7 +33,7 @@ public class MainActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				//http://www.trinea.cn/android/android-http-cache/
-				httpCache.httpGet("www.baidu.com", new HttpCacheListener() {
+				httpCache.httpGet("http://www.800pharm.com/shop/m/cgList.html", new HttpCacheListener() {
 					 
 				    protected void onPreGet() {
 				        // do something like show progressBar before httpGet, runs on the UI thread 
@@ -39,7 +44,27 @@ public class MainActivity extends Activity {
 				        if (httpResponse != null) {
 				            // get data success
 				           // setText(httpResponse.getResponseBody());
-				        	Log.d("tag",httpResponse.getResponseBody());
+				        	
+				        	 if (StringUtils.isEmpty(httpResponse.getResponseBody())) {
+				        		 Log.d(CNSTS.TAG,"empty result..");
+				             }else
+				             {
+				            	 
+				            	 try {
+				            		 JSONArray  array=new JSONArray(httpResponse.getResponseBody());
+				            		 for(int i=0 ; i< array.length();i++)
+				            		 {
+				            			 Log.d(CNSTS.TAG,JSONUtils.getString(array.getJSONObject(i), "cg_id", "0")+
+				            					 JSONUtils.getString(array.getJSONObject(i), "title", "t")
+				            					 );
+				            			 
+				            		 }
+				            		
+					             } catch (JSONException e) {
+					                     e.printStackTrace();
+				               }
+				             }
+				        	
 				        } else {
 				            // get data fail
 				        }
@@ -50,6 +75,18 @@ public class MainActivity extends Activity {
 			}
 		});
 
+	//界面跳转。。	
+		Button handlerAct = (Button) findViewById(R.id.handlerAct);
+		handlerAct.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				 
+				Intent intent = new Intent(MainActivity.this, HandlerActivity.class);
+				startActivity(intent);
+			 
+		}
+		});
 		
 	}
 
