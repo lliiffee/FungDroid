@@ -80,14 +80,20 @@ public class MainActivity extends Activity {
 		handlerAct.setOnClickListener(new View.OnClickListener() {
 			
 			@Override
-			public void onClick(View v) {
-				 
+			public void onClick(View v) { 
 				Intent intent = new Intent(MainActivity.this, HandlerActivity.class);
 				startActivity(intent);
-			 
 		}
 		});
 		
+      Button btnDownloadThread=(Button) this.findViewById(R.id.btnDownloadThread);
+      
+      btnDownloadThread.setOnClickListener(new View.OnClickListener() {
+			public void onClick(View v) { 
+				Intent intent = new Intent(MainActivity.this, ThreadedDownloadsActivity.class);
+				startActivity(intent);
+		  }
+		});
 	}
 
 	@Override
